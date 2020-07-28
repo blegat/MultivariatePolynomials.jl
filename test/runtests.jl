@@ -6,6 +6,10 @@ const MP = MultivariatePolynomials
 
 include("utils.jl")
 
+include("simple.jl")
+Mod = SimplePolynomials
+include("commutativetests.jl")
+
 # Taken from JuMP/test/solvers.jl
 function try_import(name::Symbol)
     try
