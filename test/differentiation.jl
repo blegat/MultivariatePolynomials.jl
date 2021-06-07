@@ -38,6 +38,12 @@
     @test differentiate(f, [x, y, z]) == [2x 1 0; 4 0 2z]
     @test differentiate(f, (x, y, z)) == [2x 1 0; 4 0 2z]
 
+    @testset "Differentiate empty polynomial" begin
+        p = x^0 - 1
+        @test iszero(@inferred differentiate(p, x))
+        @test all(iszero, @inferred differentiate(p, [x, y]))
+    end
+
     @testset "differentiation with Val{}" begin
         @test @inferred(differentiate(x, x, Val{0}())) == x
         @test @inferred(differentiate(x, x, Val{1}())) == 1
